@@ -121,7 +121,7 @@ func (m *Model) Train(ctx context.Context, dset datasetter.FullTrainer, solver G
 				}
 				copy(hiddenT.Data().([]float32), hidden.Value().Data().([]float32))
 				copy(cellT.Data().([]float32), cell.Value().Data().([]float32))
-				solver.Step(G.Nodes{
+				solver.Step(G.NodesToValueGrads(G.Nodes{
 					lstm.biasC, lstm.biasF, lstm.biasI, lstm.biasO, lstm.biasY,
 					lstm.uc, lstm.uf, lstm.ui, lstm.uo,
 					lstm.wc, lstm.wf, lstm.wi, lstm.wo, lstm.wy})
